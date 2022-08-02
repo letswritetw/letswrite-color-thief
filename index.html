@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Color Thief，抓圖片裡的顏色 - August - Let's Write</title>
+    <link rel="canonical" href="https://www.letswrite.tw/color-thief/"/>
+    <meta property="og:url" content="https://letswritetw.github.io/letswrite-color-thief/"/>
+    <meta property="fb:app_id" content="911000986339138"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Let's Write"/>
+    <meta property="og:title" content="Color Thief，抓圖片裡的顏色 - Augustus - Let's Write"/>
+    <meta itemprop="name" content="Color Thief，抓圖片裡的顏色 - Augustus - Let's Write"/>
+    <meta name="description" content="Color Thief，抓圖片裡的顏色"/>
+    <meta property="og:description" content="Color Thief，抓圖片裡的顏色"/>
+    <meta itemprop="description" content="Color Thief，抓圖片裡的顏色"/>
+    <meta itemprop="image" content="https://letswritetw.github.io/letswrite-color-thief/fb.png"/>
+    <meta property="og:image" content="https://letswritetw.github.io/letswrite-color-thief/fb.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Color Thief，抓圖片裡的顏色"/>
+    <link rel="shortcut icon" href="https://letswritetw.github.io/letswritetw/dist/img/logo_512.png"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              main: '#42A6F7',
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="dist/style.min.css" media="screen"/>
+    <!-- Google Tag Manager-->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PGQ9WQT');
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript)-->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <div class="container mx-auto px-4 py-10" id="app">
+      <h1 class="mb-4 text-center font-bold text-3xl">Color Thief，抓圖片裡的顏色</h1>
+      <p class="text-center">筆記文：<a class="text-main underline hover:no-underline" href="https://www.letswrite.tw/color-thief/">Let's Write</a></p>
+      <hr class="m-10 border-0 border-t border-gray-200"/>
+      <!-- 基本範例-->
+      <div class="mb-10">
+        <h2 class="mb-6 text-center font-bold text-2xl">基本範例</h2>
+        <div class="flex justify-center flex-wrap sm:flex-nowrap">
+          <div class="mb-4 sm:mb-0 pr-3 w-full sm:w-1/2"><img class="ml-auto" id="demo-1" src="dist/demo1.jpeg"/></div>
+          <div class="pl-2 w-full sm:w-1/2" v-if="demo1.main">
+            <h3 class="mb-2 font-bold text-xl">主要顏色</h3>
+            <div class="mb-4">
+              <div class="color" :style="'background-color: ' + toHex(demo1.main)">
+                <p class="text-sm text-white">{{ toHex(demo1.main) }}</p>
+              </div>
+            </div>
+            <h3 class="mb-2 font-bold text-xl">調色盤</h3>
+            <div class="flex flex-wrap">
+              <div class="color" v-for="palette in demo1.palette" :style="'background-color: ' + toHex(palette)">
+                <p class="text-sm text-white">{{ toHex(palette) }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="m-10 border-0 border-t border-gray-200"/>
+      <!-- 進階範例：自行選擇圖檔-->
+      <div class="mb-10">
+        <h2 class="mb-6 text-center font-bold text-2xl">進階範例：自行選擇圖檔</h2>
+        <!-- 選擇圖檔按鈕-->
+        <div class="mb-6">
+          <input class="hidden" id="upload" type="file" accept="image/*" @change="getUploadImg"/>
+          <div class="text-center">
+            <label class="inline-flex items-center px-4 py-2 border border-slate-300 hover:border-main rounded-lg cursor-pointer" for="upload"><img class="mr-2" src="https://letswritetw.github.io/letswrite-file-api-custom-input/upload.svg" alt=""/><span class="text-lg">選擇圖檔</span></label>
+          </div>
+        </div>
+        <!-- 選擇的圖檔-->
+        <div class="flex justify-center flex-wrap sm:flex-nowrap">
+          <div class="mb-4 sm:mb-0 pr-3 w-full sm:w-1/2"><img class="ml-auto max-w-full" id="custom-img" width="536" :src="customImg"/></div>
+          <div class="pl-2 w-full sm:w-1/2" v-if="custom.main">
+            <h3 class="mb-2 font-bold text-xl">主要顏色</h3>
+            <div class="mb-4">
+              <div class="color" :style="'background-color: ' + toHex(custom.main)">
+                <p class="text-sm text-white">{{ toHex(demo1.main) }}</p>
+              </div>
+            </div>
+            <h3 class="mb-2 font-bold text-xl">調色盤</h3>
+            <div class="flex flex-wrap">
+              <div class="color" v-for="palette in custom.palette" :style="'background-color: ' + toHex(palette)">
+                <p class="text-sm text-white">{{ toHex(palette) }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="m-10 border-0 border-t border-gray-200"/>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="dist/main.min.js"></script>
+  </body>
+</html>

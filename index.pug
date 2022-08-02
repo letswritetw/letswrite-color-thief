@@ -1,0 +1,120 @@
+- var link = 'color-thief'
+- var title = 'Color Thief，抓圖片裡的顏色'
+- var description = 'Color Thief，抓圖片裡的顏色'
+
+<!DOCTYPE html>
+html(lang="zh-Hant")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title #{title} - August - Let's Write
+
+    link(rel="canonical", href=`https://www.letswrite.tw/${link}/`)
+    meta(property="og:url", content=`https://letswritetw.github.io/letswrite-${link}/`)
+
+    meta(property="fb:app_id", content="911000986339138")
+    meta(property="og:type", content="website")
+
+    meta(property="og:site_name", content="Let's Write")
+    meta(property="og:title", content=`${title} - Augustus - Let's Write`)
+    meta(itemprop="name", content=`${title} - Augustus - Let's Write`)
+
+    meta(name="description", content=description)
+    meta(property="og:description", content=description)
+    meta(itemprop="description", content=description)
+
+    meta(itemprop="image", content=`https://letswritetw.github.io/letswrite-${link}/fb.png`)
+    meta(property="og:image", content=`https://letswritetw.github.io/letswrite-${link}/fb.png`)
+    meta(property="og:image:width", content="1200")
+    meta(property="og:image:height", content="630")
+    meta(property="og:image:alt", content=title)
+
+    link(rel="shortcut icon", href="https://letswritetw.github.io/letswritetw/dist/img/logo_512.png")
+
+    //- CSS
+    script(src="https://cdn.tailwindcss.com")
+    script.
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              main: '#42A6F7',
+            }
+          }
+        }
+      }
+    link(rel="stylesheet", href="dist/style.min.css", media="screen")
+
+    // Google Tag Manager
+    script.
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PGQ9WQT');
+  body
+
+    // Google Tag Manager (noscript)
+    noscript
+      iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT", height="0", width="0", style="display:none;visibility:hidden")
+    
+    #app.container.mx-auto.px-4.py-10
+      h1.mb-4.text-center.font-bold.text-3xl=title
+      p.text-center 筆記文：
+        a(class="text-main underline hover:no-underline", href=`https://www.letswrite.tw/${link}/`) Let's Write
+      
+      hr.m-10.border-0.border-t.border-gray-200
+
+      // 基本範例
+      .mb-10
+        h2.mb-6.text-center.font-bold.text-2xl 基本範例
+
+        .flex.justify-center(class="flex-wrap sm:flex-nowrap")
+          div(class="mb-4 sm:mb-0 pr-3 w-full sm:w-1/2")
+            img#demo-1.ml-auto(src="dist/demo1.jpeg")
+          div(class="pl-2 w-full sm:w-1/2", v-if="demo1.main")
+            h3.mb-2.font-bold.text-xl 主要顏色
+            div.mb-4
+              .color(:style="'background-color: ' + toHex(demo1.main)")
+                p.text-sm.text-white {{ toHex(demo1.main) }}
+            h3.mb-2.font-bold.text-xl 調色盤
+            .flex.flex-wrap
+              .color(v-for="palette in demo1.palette",
+                    :style="'background-color: ' + toHex(palette)")
+                p.text-sm.text-white {{ toHex(palette) }}
+      
+      hr.m-10.border-0.border-t.border-gray-200
+      
+      // 進階範例：自行選擇圖檔
+      .mb-10
+        h2.mb-6.text-center.font-bold.text-2xl 進階範例：自行選擇圖檔
+        
+        // 選擇圖檔按鈕
+        .mb-6
+          input#upload.hidden(type="file", accept="image/*", @change="getUploadImg")
+          .text-center
+            label(for="upload", class="inline-flex items-center px-4 py-2 border border-slate-300 hover:border-main rounded-lg cursor-pointer")
+              img.mr-2(src="https://letswritetw.github.io/letswrite-file-api-custom-input/upload.svg", alt="")
+              span.text-lg 選擇圖檔
+
+        // 選擇的圖檔
+        .flex.justify-center(class="flex-wrap sm:flex-nowrap")
+          div(class="mb-4 sm:mb-0 pr-3 w-full sm:w-1/2")
+            img#custom-img.ml-auto(class="max-w-full", width="536", :src="customImg")
+
+          div(class="pl-2 w-full sm:w-1/2", v-if="custom.main")
+            h3.mb-2.font-bold.text-xl 主要顏色
+            div.mb-4
+              .color(:style="'background-color: ' + toHex(custom.main)")
+                p.text-sm.text-white {{ toHex(demo1.main) }}
+            h3.mb-2.font-bold.text-xl 調色盤
+            .flex.flex-wrap
+              .color(v-for="palette in custom.palette",
+                    :style="'background-color: ' + toHex(palette)")
+                p.text-sm.text-white {{ toHex(palette) }}
+
+      hr.m-10.border-0.border-t.border-gray-200
+
+    script(src="https://unpkg.com/vue@3")
+    script(src="dist/main.min.js")
