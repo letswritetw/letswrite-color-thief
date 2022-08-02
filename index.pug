@@ -81,8 +81,8 @@ html(lang="zh-Hant")
             h3.mb-2.font-bold.text-xl 調色盤
             .flex.flex-wrap
               .color(v-for="palette in demo1.palette",
-                    :style="'background-color: ' + toHex(palette)")
-                p.text-sm.text-white {{ toHex(palette) }}
+                    :style="'background-color: ' + toHex(palette.color)")
+                p.text-sm.text-white {{ toHex(palette.color) }}
       
       hr.m-10.border-0.border-t.border-gray-200
       
@@ -111,8 +111,8 @@ html(lang="zh-Hant")
             h3.mb-2.font-bold.text-xl 調色盤
             .flex.flex-wrap
               .color(v-for="palette in custom.palette",
-                    :style="'background-color: ' + toHex(palette)")
-                p.text-sm.text-white {{ toHex(palette) }}
+                    :style="'background-color: ' + toHex(palette.color)")
+                p.text-sm.text-white {{ toHex(palette.color) }}
 
       hr.m-10.border-0.border-t.border-gray-200
 

@@ -41,6 +41,24 @@ const app = createApp({
       return '#' + hex
     },
 
+    // 排序色碼
+    // RGB 顏色加總：0 - 765。數字愈小愈深。
+    sortPalette(array) {
+      let tempForCalc = [];
+      Array.prototype.forEach.call(array, palette => {
+        const sum = palette.reduce((a, b) => a + b, 0);
+        const item = {
+          color: palette,
+          sum: sum
+        }
+        tempForCalc.push(item);
+      });
+      const result = tempForCalc.concat().sort((a, b) => {
+        return a.sum > b.sum ? -1 : 1;
+      });
+      return result;
+    },
+
     // Demo1
     async getDemo1() {
       const demo1 = document.getElementById('demo-1');
@@ -48,8 +66,9 @@ const app = createApp({
       await this.waitImageLoad(demo1);
 
       this.demo1.main = this.colorThief.getColor(demo1);
-      this.demo1.palette = this.colorThief.getPalette(demo1);
-      console.log(this.demo1);
+      let tempPalette = this.colorThief.getPalette(demo1);
+      this.demo1.palette = this.sortPalette(tempPalette);
+
     },
 
     // 取得使用者選擇的圖檔，轉成 base64 寫入 img
@@ -66,8 +85,10 @@ const app = createApp({
         await this.waitImageLoad(img);
 
         // 執行 colorThief
-        this.custom.main = this.colorThief.getColor(img);
-        this.custom.palette = this.colorThief.getPalette(img);
+        this.custom.main = this.colorThief.getColor(img, 5);
+        let tempPalette = this.colorThief.getPalette(img, 10, 5);
+        this.custom.palette = this.sortPalette(tempPalette);
+
       });
       fileReader.readAsDataURL(fileData);
     }

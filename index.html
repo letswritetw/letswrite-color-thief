@@ -66,8 +66,8 @@
             </div>
             <h3 class="mb-2 font-bold text-xl">調色盤</h3>
             <div class="flex flex-wrap">
-              <div class="color" v-for="palette in demo1.palette" :style="'background-color: ' + toHex(palette)">
-                <p class="text-sm text-white">{{ toHex(palette) }}</p>
+              <div class="color" v-for="palette in demo1.palette" :style="'background-color: ' + toHex(palette.color)">
+                <p class="text-sm text-white">{{ toHex(palette.color) }}</p>
               </div>
             </div>
           </div>
@@ -96,8 +96,8 @@
             </div>
             <h3 class="mb-2 font-bold text-xl">調色盤</h3>
             <div class="flex flex-wrap">
-              <div class="color" v-for="palette in custom.palette" :style="'background-color: ' + toHex(palette)">
-                <p class="text-sm text-white">{{ toHex(palette) }}</p>
+              <div class="color" v-for="palette in custom.palette" :style="'background-color: ' + toHex(palette.color)">
+                <p class="text-sm text-white">{{ toHex(palette.color) }}</p>
               </div>
             </div>
           </div>
