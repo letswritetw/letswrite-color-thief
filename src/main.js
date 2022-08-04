@@ -76,7 +76,8 @@ const app = createApp({
 
     // 取得使用者選擇的圖檔，轉成 blob 寫入 img
     async getUploadImgBlob(file) {
-      let fileData = file.target.files[0];
+
+      const fileData = file.target.files[0];
       
       this.customImg = window.URL.createObjectURL(fileData);
       
@@ -112,6 +113,7 @@ const app = createApp({
         this.custom.palette = this.sortPalette(tempPalette);
 
       });
+
       fileReader.readAsDataURL(fileData);
 
     }
