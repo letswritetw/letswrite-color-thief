@@ -56,17 +56,17 @@
       <div class="mb-10">
         <h2 class="mb-6 text-center font-bold text-2xl">基本範例</h2>
         <div class="flex justify-center flex-wrap sm:flex-nowrap">
-          <div class="mb-4 sm:mb-0 pr-3 w-full sm:w-1/2"><img class="ml-auto" id="demo-1" src="dist/demo1.jpeg"/></div>
-          <div class="pl-2 w-full sm:w-1/2" v-if="demo1.main">
+          <div class="mb-4 sm:mb-0 pr-3 w-full sm:w-1/2"><img class="ml-auto" id="basic-use" src="dist/demo.jpeg"/></div>
+          <div class="pl-2 w-full sm:w-1/2" v-if="basic.main">
             <h3 class="mb-2 font-bold text-xl">主要顏色</h3>
             <div class="mb-4">
-              <div class="color" :style="'background-color: ' + toHex(demo1.main)">
-                <p class="text-sm text-white">{{ toHex(demo1.main) }}</p>
+              <div class="color" :style="'background-color: ' + toHex(basic.main)">
+                <p class="text-sm text-white">{{ toHex(basic.main) }}</p>
               </div>
             </div>
             <h3 class="mb-2 font-bold text-xl">調色盤</h3>
             <div class="flex flex-wrap">
-              <div class="color" v-for="palette in demo1.palette" :style="'background-color: ' + toHex(palette.color)">
+              <div class="color" v-for="palette in basic.palette" :style="'background-color: ' + toHex(palette.color)">
                 <p class="text-sm text-white">{{ toHex(palette.color) }}</p>
               </div>
             </div>

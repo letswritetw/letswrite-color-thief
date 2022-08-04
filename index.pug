@@ -72,15 +72,15 @@ html(lang="zh-Hant")
 
         .flex.justify-center(class="flex-wrap sm:flex-nowrap")
           div(class="mb-4 sm:mb-0 pr-3 w-full sm:w-1/2")
-            img#demo-1.ml-auto(src="dist/demo1.jpeg")
-          div(class="pl-2 w-full sm:w-1/2", v-if="demo1.main")
+            img#basic-use.ml-auto(src="dist/demo.jpeg")
+          div(class="pl-2 w-full sm:w-1/2", v-if="basic.main")
             h3.mb-2.font-bold.text-xl 主要顏色
             div.mb-4
-              .color(:style="'background-color: ' + toHex(demo1.main)")
-                p.text-sm.text-white {{ toHex(demo1.main) }}
+              .color(:style="'background-color: ' + toHex(basic.main)")
+                p.text-sm.text-white {{ toHex(basic.main) }}
             h3.mb-2.font-bold.text-xl 調色盤
             .flex.flex-wrap
-              .color(v-for="palette in demo1.palette",
+              .color(v-for="palette in basic.palette",
                     :style="'background-color: ' + toHex(palette.color)")
                 p.text-sm.text-white {{ toHex(palette.color) }}
       

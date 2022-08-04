@@ -6,7 +6,7 @@ const app = createApp({
   data() {
     return {
       colorThief: null,
-      demo1: {
+      basic: {
         main: null,
         palette: null
       },
@@ -44,6 +44,7 @@ const app = createApp({
     // 排序色碼
     // RGB 顏色加總：0 - 765。數字愈小愈深。
     sortPalette(array) {
+      // 建一個空陣列，把調色盤裡的 RGB 存進去，並存一個三數加總的值
       let tempForCalc = [];
       Array.prototype.forEach.call(array, palette => {
         const sum = palette.reduce((a, b) => a + b, 0);
@@ -53,21 +54,23 @@ const app = createApp({
         }
         tempForCalc.push(item);
       });
+
+      // 用三數加總的值做 大 -> 小 排序
       const result = tempForCalc.concat().sort((a, b) => {
         return a.sum > b.sum ? -1 : 1;
       });
       return result;
     },
 
-    // Demo1
-    async getDemo1() {
-      const demo1 = document.getElementById('demo-1');
+    // 基本使用
+    async basicUse() {
+      const basic = document.getElementById('basic-use');
 
-      await this.waitImageLoad(demo1);
+      await this.waitImageLoad(basic);
 
-      this.demo1.main = this.colorThief.getColor(demo1);
-      let tempPalette = this.colorThief.getPalette(demo1);
-      this.demo1.palette = this.sortPalette(tempPalette);
+      this.basic.main = this.colorThief.getColor(basic);
+      let tempPalette = this.colorThief.getPalette(basic);
+      this.basic.palette = this.sortPalette(tempPalette);
 
     },
 
@@ -96,7 +99,7 @@ const app = createApp({
   },
   async mounted() {
     this.colorThief = new ColorThief();
-    this.getDemo1()
+    this.basicUse()
   },
 });
 app.mount('#app')

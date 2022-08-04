@@ -17,12 +17,12 @@
       "oAP" : "\/.gitignore",
       "oF" : 0
     },
-    "\/dist\/demo1.jpeg" : {
+    "\/dist\/demo.jpeg" : {
       "ft" : 16384,
       "iS" : 14300,
       "jF" : 0,
       "oA" : 0,
-      "oAP" : "\/dist\/demo1.jpg",
+      "oAP" : "\/dist\/demo.jpg",
       "oF" : 0,
       "oIPL" : 0,
       "opt" : 0,
