@@ -92,10 +92,10 @@ html(lang="zh-Hant")
         
         // 選擇圖檔按鈕
         .mb-6
-          input#upload.hidden(type="file", accept="image/*", @change="getUploadImg")
+          input#upload.hidden(type="file", accept="image/*", @change="getUploadImgBlob")
           .text-center
             label(for="upload", class="inline-flex items-center px-4 py-2 border border-slate-300 hover:border-main rounded-lg cursor-pointer")
-              img.mr-2(src="https://letswritetw.github.io/letswrite-file-api-custom-input/upload.svg", alt="")
+              img.mr-2(src="https://letswritetw.github.io/letswrite-file-api-custom-input/upload.svg", alt="選擇圖檔")
               span.text-lg 選擇圖檔
 
         // 選擇的圖檔
@@ -107,7 +107,7 @@ html(lang="zh-Hant")
             h3.mb-2.font-bold.text-xl 主要顏色
             div.mb-4
               .color(:style="'background-color: ' + toHex(custom.main)")
-                p.text-sm.text-white {{ toHex(demo1.main) }}
+                p.text-sm.text-white {{ toHex(custom.main) }}
             h3.mb-2.font-bold.text-xl 調色盤
             .flex.flex-wrap
               .color(v-for="palette in custom.palette",

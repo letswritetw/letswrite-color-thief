@@ -68,15 +68,34 @@ const app = createApp({
 
       await this.waitImageLoad(basic);
 
-      this.basic.main = this.colorThief.getColor(basic);
-      let tempPalette = this.colorThief.getPalette(basic);
+      this.basic.main = await this.colorThief.getColor(basic);
+      let tempPalette = await this.colorThief.getPalette(basic);
       this.basic.palette = this.sortPalette(tempPalette);
 
     },
 
+    // 取得使用者選擇的圖檔，轉成 blob 寫入 img
+    async getUploadImgBlob(file) {
+      let fileData = file.target.files[0];
+      
+      this.customImg = window.URL.createObjectURL(fileData);
+      
+      // 確定 #custom-img 的圖片載入完成
+      const img = document.getElementById('custom-img');
+      await this.waitImageLoad(img);
+
+      // 執行 colorThief
+      this.custom.main = this.colorThief.getColor(img, 5);
+      let tempPalette = this.colorThief.getPalette(img, 10, 5);
+      this.custom.palette = this.sortPalette(tempPalette);
+
+    },
+
     // 取得使用者選擇的圖檔，轉成 base64 寫入 img
-    getUploadImg(img) {
-      let fileData = img.target.files[0];
+    async getUploadImgBase64(file) {
+
+      let fileData = file.target.files[0];
+
       const fileReader = new FileReader();
       fileReader.addEventListener('load', async file => {
 
@@ -94,6 +113,7 @@ const app = createApp({
 
       });
       fileReader.readAsDataURL(fileData);
+
     }
 
   },

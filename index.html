@@ -79,9 +79,9 @@
         <h2 class="mb-6 text-center font-bold text-2xl">進階範例：自行選擇圖檔</h2>
         <!-- 選擇圖檔按鈕-->
         <div class="mb-6">
-          <input class="hidden" id="upload" type="file" accept="image/*" @change="getUploadImg"/>
+          <input class="hidden" id="upload" type="file" accept="image/*" @change="getUploadImgBlob"/>
           <div class="text-center">
-            <label class="inline-flex items-center px-4 py-2 border border-slate-300 hover:border-main rounded-lg cursor-pointer" for="upload"><img class="mr-2" src="https://letswritetw.github.io/letswrite-file-api-custom-input/upload.svg" alt=""/><span class="text-lg">選擇圖檔</span></label>
+            <label class="inline-flex items-center px-4 py-2 border border-slate-300 hover:border-main rounded-lg cursor-pointer" for="upload"><img class="mr-2" src="https://letswritetw.github.io/letswrite-file-api-custom-input/upload.svg" alt="選擇圖檔"/><span class="text-lg">選擇圖檔</span></label>
           </div>
         </div>
         <!-- 選擇的圖檔-->
@@ -91,7 +91,7 @@
             <h3 class="mb-2 font-bold text-xl">主要顏色</h3>
             <div class="mb-4">
               <div class="color" :style="'background-color: ' + toHex(custom.main)">
-                <p class="text-sm text-white">{{ toHex(demo1.main) }}</p>
+                <p class="text-sm text-white">{{ toHex(custom.main) }}</p>
               </div>
             </div>
             <h3 class="mb-2 font-bold text-xl">調色盤</h3>
